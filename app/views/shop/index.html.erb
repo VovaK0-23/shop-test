@@ -1,0 +1,4 @@
+<% @shops.each do |shop| %>
+  <%= shop.name %>
+  <%= link_to "Categories", categories_path(shop.id) %>
+<% end %>
