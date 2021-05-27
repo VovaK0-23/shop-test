@@ -1,0 +1,4 @@
+<% @categories.each do |category| %>
+  <%= category.name %>
+  <%= link_to "Products", products_path(category.id) %>
+<% end %>
