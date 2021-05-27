@@ -1,3 +1,18 @@
-<% @products.each do |product| %>
-  <%= product.name %>
-<% end %>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @products.each_with_index do |product, i| %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= product.name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
