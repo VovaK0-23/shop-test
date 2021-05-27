@@ -9,4 +9,12 @@ ActiveAdmin.register CategoryProduct do
     end
     f.actions
   end
+
+  controller do
+    def create
+      create! do |format|
+        format.html { redirect_to admin_product_path(params['category_product']['product_id']) }
+      end
+    end
+  end
 end
