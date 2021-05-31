@@ -8,6 +8,6 @@ class CartController < ApplicationController
   private
 
   def save_previous_url
-    session[:my_previous_url] = URI(request.referer || '').path unless URI(request.referer || '').path == '/cart'
+    session[:my_previous_url] = URI(request&.referer).path unless request.url == request.referer
   end
 end

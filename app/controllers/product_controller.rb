@@ -8,11 +8,6 @@ class ProductController < ApplicationController
   private
 
   def amount_sum
-    items = CartItem.where(cart_id: @cart.id)
-    amount = []
-    items.each do |item|
-      amount << item.amount
-    end
-    amount.sum
+    CartItem.where(cart_id: @cart.id).sum(&:amount)
   end
 end
