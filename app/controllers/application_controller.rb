@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
       return
     end
     @cart = Cart.find_or_create_by(user_id: current_user.id)
+    session[:cart_id] = @cart.id
   end
 
   def unsigned_user_cart
