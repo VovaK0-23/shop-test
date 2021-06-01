@@ -2,6 +2,7 @@ class CartController < ApplicationController
   before_action :save_previous_url, only: :show
 
   def show
+    #TODO fix page crashes when reloaded
     @cart_items = CartItem.where(cart_id: @cart.id).sort
     @back_url = session[:my_previous_url]
   end

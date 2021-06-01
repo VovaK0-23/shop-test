@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
+    <div class="card-header">
+      Delivery details
+    </div>
+    <%= form_with model: @order do |form| %>
+      <div class="card-body">
+        <%= form.label :email, "Email" %>
+        <%= form.email_field :email, value: @user_email, class: 'form-control' %>
+        <%= form.label :name, "Name" %>
+        <%= form.text_field :name, class: 'form-control' %>
+        <%= form.label :address, "Address" %>
+        <%= form.text_field :address, class: 'form-control'%>
+        <%= form.hidden_field :user_id, value: @user_id %>
+      </div>
+      <div class="card-footer">
+        <%= form.submit "Continue" %>
+    <% end %>
+    <%= link_to "Back", cart_path, class: "btn btn-secondary"%>
+      </div>
+  </div>
+</div>

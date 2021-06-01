@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       @cart = Cart.update(session[:cart_id], {user_id: current_user.id})
       return
     end
+    #TODO fix new cart creates even if user already have cart
     @cart = Cart.find_or_create_by(user_id: current_user.id)
     session[:cart_id] = @cart.id
   end
