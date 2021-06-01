@@ -15,12 +15,16 @@ class OrderController < ApplicationController
     @order.save
     cart_items = CartItem.where(cart_id: @cart.id)
     cart_items.update_all(order_id: @order.id)
-    redirect_to confirm_path
+    redirect_to confirm_path(@order.id)
   end
 
   def confirm
-
+    @order = Order.find(params[:id])
+    @items = @order.cart_items
+    @price = @items.map { |item| item.product.price * item.amount }.sum
   end
+
+  def thanks; end
 
   private
 

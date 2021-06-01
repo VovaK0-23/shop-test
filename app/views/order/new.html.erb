@@ -3,7 +3,7 @@
     <div class="card-header">
       Delivery details
     </div>
-    <%= form_with model: @order do |form| %>
+    <%= form_with model: @order, url: create_order_path do |form| %>
       <div class="card-body">
         <%= form.label :email, "Email" %>
         <%= form.email_field :email, value: @user_email, class: 'form-control' %>
@@ -14,9 +14,11 @@
         <%= form.hidden_field :user_id, value: @user_id %>
       </div>
       <div class="card-footer">
-        <%= form.submit "Continue" %>
+        <div class="row">
+          <%= form.submit "Continue", class: "btn btn-primary" %>
     <% end %>
-    <%= link_to "Back", cart_path, class: "btn btn-secondary"%>
-      </div>
+    <%= link_to "Back", shops_path, class: "btn"%>
+    </div>
+    </div>
   </div>
 </div>

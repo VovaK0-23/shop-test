@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   post   'cart_item/:id',   to: 'cart_item#create',   as: :create_cart_item
   delete 'cart_item/:id',   to: 'cart_item#destroy',  as: :delete_cart_item
   get    'cart',            to: 'cart#show',          as: :cart
-  get    'order',           to: 'order#new',          as: :orders
-  post   'order',           to: 'order#create'
-  get    'confirm',         to: 'order#confirm',      as: :confirm
+  get    'order',           to: 'order#new',          as: :new_order
+  post   'order',           to: 'order#create',       as: :create_order
+  get    'confirm/:id',     to: 'order#confirm',      as: :confirm
+  get    'thanks',          to: 'order#thanks',       as: :thanks
 end
