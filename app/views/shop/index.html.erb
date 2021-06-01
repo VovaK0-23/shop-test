@@ -1,4 +1,21 @@
-<% @shops.each do |shop| %>
-  <%= shop.name %>
-  <%= link_to "Categories", categories_path(shop.id) %>
-<% end %>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Shop</th>
+      <th scope="col">Categories</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @shops.each_with_index do |shop, i| %>
+    <tr>
+      <th scope="row"><%= i + 1 %></th>
+      <td><%= shop.name %></td>
+      <td><%= link_to "Categories", categories_path(shop.id), class: "btn btn-secondary"%></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+</div>

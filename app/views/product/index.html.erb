@@ -1,3 +1,27 @@
-<% @products.each do |product| %>
-  <%= product.name %>
-<% end %>
+<div class="container">
+  <%= link_to cart_path, :class => "btn btn-primary" do %>
+    Cart
+    <span class="badge bg-secondary"><%= @amount_sum %></span>
+  <% end %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Add to cart</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @products.each_with_index do |product, i| %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= button_to "Add to cart", create_cart_item_path(product.id), class: "btn btn-secondary"%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to "Back", categories_path(@shop_id), class: "btn btn-secondary"%>
+</div>

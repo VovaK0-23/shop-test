@@ -13,6 +13,10 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
+gem 'bootstrap', '~> 5.0.0.beta2'
+gem 'devise'
+gem 'jquery-rails'
+gem 'sprockets-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
