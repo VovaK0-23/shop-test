@@ -2,6 +2,7 @@ class ProductController < ApplicationController
   before_action :amount_sum, only: :index
 
   def index
+    authorize Category.find(params[:id]).products
     @products = Category.find(params[:id]).products
     @shop_id = Category.find(params[:id]).shop_id
   end
