@@ -28,12 +28,8 @@ class ApplicationController < ActionController::Base
   end
 
   def unsigned_user_cart
-    if session[:cart_id].present?
-      @cart = Cart.find(session[:cart_id])
-      return
-    end
-    @cart = Cart.create
-    session[:cart_id] = @cart.id
+    @cart = session[:cart_id].present? ? Cart.find(session[:cart_id]) : Cart.create
+    session[:cart_id] ||= @cart.id
   end
 
   def create_cart
@@ -49,7 +45,7 @@ class ApplicationController < ActionController::Base
     return if find_cart_by_session.id == find_cart_by_user_id.id
 
     find_cart_by_session.destroy
-    session[:cart_id] = @cart.id
+    session[:cart_id] = find_cart_by_user_id.id
   end
 
   def update_cart

@@ -3,7 +3,7 @@
     <div class="card-header">
       Delivery details
     </div>
-    <%= form_with model: @order, url: create_order_path do |form| %>
+    <%= form_with model: Order.new, url: create_order_path do |form| %>
       <div class="card-body">
         <%= form.label :email, "Email" %>
         <%= form.email_field :email, value: @user_email, class: 'form-control' %>
