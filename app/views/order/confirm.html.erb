@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="card position-absolute top-50 start-50 translate-middle" style="width: 28rem;">
+    <div class="card-header">
+      <p>Order confirmation</p>
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="delivery-tab" data-bs-toggle="tab" data-bs-target="#delivery" type="button" role="tab" aria-controls="delivery" aria-selected="true">Delivery details</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab" aria-controls="order" aria-selected="false">Order</button>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
+        <div class="card-body">
+          <table class="table">
+            <tbody>
+            <tr>
+              <th scope="col">Email</th>
+              <td><%= @order.email %></td>
+            </tr>
+            <tr>
+              <th scope="col">Name</th>
+              <td><%= @order.name %></td>
+            </tr>
+            <tr>
+              <th scope="col">Address</th>
+              <td><%= @order.address %></td>
+            </tr>
+            <tr>
+              <th scope="col">Total price</th>
+              <td><%= @price %></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="order-tab">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @items.each_with_index do |cart_item, i| %>
+              <tr>
+                <th scope="row"><%= i + 1 %></th>
+                <td><%= cart_item.product.name %></td>
+                <td><%= cart_item.product.price %></td>
+                <td><%= cart_item.amount %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+    <%= link_to "Confirm", thanks_path, class: "btn btn-primary" %>
+    <%= link_to "Cancel", shops_path, class: "btn"%>
+    </div>
+    </div>
+  </div>
+</div>

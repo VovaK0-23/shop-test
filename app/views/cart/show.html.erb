@@ -17,11 +17,18 @@
         <td><%= cart_item.product.name %></td>
         <td><%= cart_item.product.price %></td>
         <td><%= cart_item.amount %></td>
-        <td><%= button_to "Add to cart", create_cart_item_path(cart_item.product.id), class: "btn btn-secondary"%></td>
-        <td><%= button_to "Delete from cart", delete_cart_item_path(cart_item.id), method: :delete, class: "btn btn-secondary"%></td>
+        <td><%= button_to "Add to cart", create_cart_item_path(cart_item.product.id), class: "btn btn-primary"%></td>
+        <td><%= button_to "Delete from cart", delete_cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger"%></td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <%= link_to "Back", @back_url, class: "btn btn-secondary"%>
+  <div class="row justify-content-between">
+    <div class="col-3">
+      <%= link_to "Back", @back_url, class: "btn btn-secondary"%>
+    </div>
+    <div class="col-3">
+      <%= link_to "Go to payment", new_order_path, class: "btn btn-primary"%>
+    </div>
+  </div>
 </div>
