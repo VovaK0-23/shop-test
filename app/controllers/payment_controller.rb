@@ -3,27 +3,23 @@ class PaymentController < ApplicationController
 
   def new
     order = Order.find(params[:id])
-    line_items = []
-    order.cart_items.each do |cart_item|
-      hh = {}
-      product = cart_item.product
-      hh[:price_data] = {}
-      hh[:price_data][:currency] = 'usd'
-      hh[:price_data][:unit_amount] = product.price.to_i * 100
-      hh[:price_data][:product_data] = {}
-      hh[:price_data][:product_data][:name] = product.name
-      hh[:quantity] = cart_item.amount
-      line_items << hh
-    end
-
+    line_items = create_line_items(order)
     session = Stripe::Checkout::Session.create({
-                                         payment_method_types: ['card'],
-                                         line_items: line_items,
-                                         mode: 'payment',
-                                         success_url: 'https://www.google.com',
-                                         cancel_url: 'https://www.google.com',
-                                     })
+                                                 payment_method_types: ['card'],
+                                                 line_items: line_items,
+                                                 mode: 'payment',
+                                                 success_url: "#{request.base_url}/thanks",
+                                                 cancel_url: "#{request.base_url}/thanks/#{order.id}",
+                                               })
 
     render json: session, only: [:id]
+  end
+
+  def create_line_items(order)
+    order.cart_items.map do |cart_item|
+      product = cart_item.product
+      { price_data: { product_data: { name: product.name }, currency: 'usd', unit_amount: product.price.to_i * 100 },
+        quantity: cart_item.amount }
+    end
   end
 end
