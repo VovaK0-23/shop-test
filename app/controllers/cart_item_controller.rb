@@ -17,7 +17,7 @@ class CartItemController < ApplicationController
 
   def update_amount
     @cart_item = CartItem.find_by(product_id: params[:id], cart_id: @cart.id)
-    return unless @cart_item.present?
+    return if @cart_item.blank?
 
     @cart_item.update(amount: @cart_item.amount + 1)
     redirect_to session.delete(:return_to)
