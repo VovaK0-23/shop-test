@@ -1,12 +1,11 @@
 class OrderController < ApplicationController
-  def new
-    user_name_email
-  end
+  before_action :user_name_email, only: %i[new create]
+
+  def new; end
 
   def create
-    authorize Order.new(order_params)
     @order = Order.new(order_params)
-    user_name_email
+    authorize @order
     if !@order.save
       flash.now[:alert] = 'Please fill all fields correctly'
       render :new
@@ -18,8 +17,8 @@ class OrderController < ApplicationController
   end
 
   def confirm
-    authorize Order.find(params[:id])
     @order = Order.find(params[:id])
+    authorize @order
     @items = @order.cart_items
     @price = @items.map { |item| item.product.price * item.amount }.sum
   end
