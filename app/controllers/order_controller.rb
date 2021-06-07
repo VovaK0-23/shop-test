@@ -24,8 +24,13 @@ class OrderController < ApplicationController
   end
 
   def thanks
-    return if params[:id].blank?
+    respond_to do |format|
+      UserMailer.with(order: Order.find(params[:id])).order_success_email.deliver_later
+      format.html { redirect_to(shops_path, notice: 'Order details send via email') }
+    end
+  end
 
+  def error
     redirect_to confirm_path(params[:id]), alert: 'Payment failed, please try again or contact support'
   end
 

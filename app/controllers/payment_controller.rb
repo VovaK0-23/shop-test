@@ -8,12 +8,13 @@ class PaymentController < ApplicationController
                                                  payment_method_types: ['card'],
                                                  line_items: line_items,
                                                  mode: 'payment',
-                                                 success_url: "#{request.base_url}/thanks",
-                                                 cancel_url: "#{request.base_url}/thanks/#{order.id}",
+                                                 success_url: "#{request.base_url}/thanks/#{order.id}",
+                                                 cancel_url: "#{request.base_url}/payment_error/#{order.id}",
                                                })
-
     render json: session, only: [:id]
   end
+
+  private
 
   def create_line_items(order)
     order.cart_items.map do |cart_item|
