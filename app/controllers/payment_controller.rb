@@ -1,5 +1,4 @@
 class PaymentController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :new
 
   def new
     order = Order.find(params[:id])

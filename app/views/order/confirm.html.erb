@@ -1,3 +1,5 @@
+<%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+<%= tag :meta, :name => "order-id", :content => @order.id %>
 <div class="container">
   <div class="card position-absolute top-50 start-50 translate-middle" style="width: 28rem;">
     <div class="card-header">
@@ -69,5 +71,5 @@
     </div>
   </div>
 </div>
-<%= javascript_pack_tag 'stripe', 'data-turbolinks-track': 'reload' %>
 <script src="https://js.stripe.com/v3/"></script>
+<%= javascript_pack_tag 'stripe', 'data-turbolinks-track': 'reload' %>

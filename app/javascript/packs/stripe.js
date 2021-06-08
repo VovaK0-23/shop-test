@@ -1,9 +1,17 @@
-const stripe = Stripe("<%=ENV['STRIPE_PUBLIC_KEY']%>");
+const publicKey = $('meta[name="stripe-key"]').attr('content');
+const orderId = $('meta[name="order-id"]').attr('content');
+const stripe = Stripe(publicKey);
 const checkoutButton = document.getElementById('checkout-button');
+const token = document.getElementsByName(
+    "csrf-token"
+)[0].content;
 
 checkoutButton.addEventListener('click', function() {
-    fetch('/payment/<%=@order.id%>', {
+    fetch('/payment/'+ orderId, {
         method: 'POST',
+        headers: {
+            'X-CSRF-Token': token
+        }
     })
         .then(function(response) {
             return response.json();

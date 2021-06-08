@@ -9,7 +9,6 @@ $(document).ready(function(){
         let amount = amount_field.text();
         amount = parseInt(amount) + 1;
         amount_field.text(amount);
-        console.log(this.dataset.id);
         let url = "cart_item/"+ this.dataset.id;
         $.ajax({
             url: url,
