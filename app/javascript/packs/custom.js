@@ -1,3 +1,7 @@
+const token = document.getElementsByName(
+    "csrf-token"
+)[0].content;
+
 $(document).ready(function(){
     $(".add-to-cart").click(function(event){
         event.preventDefault();
@@ -9,7 +13,10 @@ $(document).ready(function(){
         let url = "cart_item/"+ this.dataset.id;
         $.ajax({
             url: url,
-            type: "get",
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': token
+            },
             success: function() {
                 console.log('success')
             }
