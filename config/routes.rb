@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get    'order',           to: 'order#new',          as: :new_order
   post   'order',           to: 'order#create',       as: :create_order
   get    'confirm/:id',     to: 'order#confirm',      as: :confirm
+  post   'payment/:id',     to: 'payment#new',        as: :new_payment
   get    'thanks',          to: 'order#thanks',       as: :thanks
+  get    'thanks/:id',      to: 'order#thanks',       as: :payment_error
 end

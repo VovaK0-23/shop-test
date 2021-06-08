@@ -63,9 +63,10 @@
       </div>
       <div class="card-footer">
         <div class="row">
-    <%= link_to "Confirm", thanks_path, class: "btn btn-primary" %>
-    <%= link_to "Cancel", shops_path, class: "btn"%>
-    </div>
+          <button id="checkout-button" class="btn btn-primary">Checkout</button>
+          <%= link_to "Cancel", shops_path, class: "btn"%>
+        </div>
     </div>
   </div>
 </div>
+<%= javascript_pack_tag 'stripe', 'data-turbolinks-track': 'reload' %>

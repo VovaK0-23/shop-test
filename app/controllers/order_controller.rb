@@ -23,7 +23,11 @@ class OrderController < ApplicationController
     @price = @items.map { |item| item.product.price * item.amount }.sum
   end
 
-  def thanks; end
+  def thanks
+    return if params[:id].blank?
+
+    redirect_to confirm_path(params[:id]), alert: 'Payment failed, please try again or contact support'
+  end
 
   private
 
