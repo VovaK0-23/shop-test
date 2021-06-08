@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Payment successful</h1>
+    <p>
+      <%= @order.name %>, your order id - <%= @order.id %><br>
+    </p>
+    <table>
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @order.cart_items.each_with_index do |cart_item, i| %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= cart_item.product.name %></td>
+        <td><%= cart_item.product.price %></td>
+        <td><%= cart_item.amount %></td>
+      </tr>
+    <% end %>
+    </tbody>
+    </table>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for order and have a great day!</p>
+  </body>
+</html>
