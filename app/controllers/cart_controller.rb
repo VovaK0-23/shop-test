@@ -3,7 +3,7 @@ class CartController < ApplicationController
 
   def show
     @cart_items = CartItem.where(cart_id: @cart.id).sort
-    authorize @cart_items
+    authorize @cart_items.first
     @back_url = session[:my_previous_url]
   end
 
