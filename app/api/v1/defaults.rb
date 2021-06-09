@@ -1,11 +1,11 @@
-module API
-  module V2
+
+  module V1
     module Defaults
       extend ActiveSupport::Concern
 
       included do
         prefix 'api'
-        version 'v2', using: :path
+        version 'v1', using: :path
         default_format :json
         format :json
         helpers do
@@ -28,4 +28,3 @@ module API
       end
     end
   end
-end

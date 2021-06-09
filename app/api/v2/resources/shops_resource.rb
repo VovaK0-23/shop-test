@@ -1,7 +1,6 @@
-module API
-  module V1
-    class Shops < Grape::API
-      include API::V1::Defaults
+module V2::Resources
+    class ShopsResource < Grape::API
+      include V2::Defaults
 
       resource :shops do
         desc 'Return all shops'
@@ -17,7 +16,7 @@ module API
           Shop.find(permitted_params[:id])
         end
 
-        desc 'Return a products of shop'
+        desc 'Return a products of shop with categories'
         params do
           requires :id, type: String, desc: 'ID of the shop'
         end
@@ -25,7 +24,9 @@ module API
           products = []
           Category.where(shop_id: permitted_params[:id]).each do |category|
             CategoryProduct.where(category_id: category.id).each do |category_product|
-              products << category_product.product
+              product = category_product.product.as_json
+              product[:category] = category_product.category
+              products << product
             end
           end
           products
@@ -33,4 +34,3 @@ module API
       end
     end
   end
-end
