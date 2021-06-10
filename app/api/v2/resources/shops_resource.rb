@@ -4,7 +4,7 @@ module V2::Resources
 
     resource :shops do
       desc 'Return all shops'
-      get '', root: :shops do
+      get do
         shops = Shop.all
         present shops, with: V2::Entities::ShopEntity
       end
