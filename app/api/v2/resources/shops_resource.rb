@@ -23,12 +23,7 @@ module V2::Resources
         requires :id, type: String, desc: 'ID of the shop'
       end
       get 'products/:id', root: 'products' do
-        products = []
-        Shop.find(permitted_params[:id]).categories.each do |category|
-          CategoryProduct.where(category_id: category.id).each do |category_product|
-            products << category_product.product
-          end
-        end
+        products = Shop.find(permitted_params[:id]).category_products.map(&:product)
         present products, with: V2::Entities::ProductEntity
       end
     end
