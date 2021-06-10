@@ -24,7 +24,7 @@ module V2::Resources
       end
       get 'products/:id', root: 'products' do
         products = []
-        Category.where(shop_id: permitted_params[:id]).each do |category|
+        Shop.find(permitted_params[:id]).categories.each do |category|
           CategoryProduct.where(category_id: category.id).each do |category_product|
             products << category_product.product
           end

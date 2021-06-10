@@ -3,13 +3,13 @@ module V2::Entities
     expose :id, documentation: { type: 'Integer' }
     expose :name
     expose :price
-    expose :category
+    expose :categories
     expose :created_at
     expose :updated_at
 
     private
 
-    def category
+    def categories
       object.categories
     end
   end
