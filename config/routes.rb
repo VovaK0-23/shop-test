@@ -2,10 +2,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  mount V1::API, at: '/api/v1'
-  mount V2::API, at: '/api/v2'
-  mount GrapeSwaggerRails::Engine, at: '/api/v1/docs', as: :v1
-  mount GrapeSwaggerRails::Engine, at: '/api/v2/docs', as: :v2
+  mount API, at: '/'
+  mount GrapeSwaggerRails::Engine, at: '/documentation'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
   get    'shops',           to: 'shop#index',         as: :shops
