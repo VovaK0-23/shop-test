@@ -131,6 +131,13 @@ GEM
       dry-logic (~> 1.0, >= 1.0.2)
     erubi (1.10.0)
     execjs (2.8.1)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.1)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -369,6 +376,8 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   dotenv-rails
+  factory_bot_rails
+  faker
   grape
   grape-entity
   grape-swagger
