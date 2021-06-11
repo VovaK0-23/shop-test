@@ -26,6 +26,7 @@ gem 'sprockets-rails'
 gem 'stripe'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
+gem 'ransack'
 
 
 group :development, :test do
