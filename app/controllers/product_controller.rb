@@ -5,8 +5,7 @@ class ProductController < ApplicationController
     authorize Category.find(params[:id]).products
 
     @search = Category.find(params[:id]).products.ransack(params[:q])
-    @products = @search.result
-    @search.build_condition
+    @products = @search.result(distinct: true)
 
     @shop_id = Category.find(params[:id]).shop_id
   end

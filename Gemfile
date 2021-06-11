@@ -19,6 +19,7 @@ gem 'puma', '~> 5.0'
 gem 'pundit'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
+gem 'ransack'
 gem 'redis'
 gem 'sass-rails', '>= 6'
 gem 'sidekiq'
@@ -26,8 +27,6 @@ gem 'sprockets-rails'
 gem 'stripe'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
-gem 'ransack'
-
 
 group :development, :test do
   gem 'factory_bot_rails'
