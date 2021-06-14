@@ -382,6 +382,7 @@ DEPENDENCIES
   grape-entity
   grape-swagger
   grape-swagger-rails
+  inherited_resources
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)

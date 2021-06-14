@@ -1,7 +1,5 @@
-class OrderController < ApplicationController
+class OrderController < ResourcesController
   before_action :user_name_email, only: %i[new create]
-
-  def new; end
 
   def create
     @order = Order.new(order_params)

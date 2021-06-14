@@ -1,13 +1,13 @@
-class ProductController < ApplicationController
+class ProductController < ResourcesController
   before_action :amount_sum, only: :index
 
   def index
-    authorize Category.find(params[:id]).products
+    super do
+      @search = Category.find(params[:id]).products.ransack(params[:q])
+      @products = @search.result(distinct: true)
 
-    @search = Category.find(params[:id]).products.ransack(params[:q])
-    @products = @search.result(distinct: true)
-
-    @shop_id = Category.find(params[:id]).shop_id
+      @shop_id = Category.find(params[:id]).shop_id
+    end
   end
 
   private
