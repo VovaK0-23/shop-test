@@ -1,6 +1,7 @@
-class CategoryController < ApplicationController
+class CategoryController < ResourcesController
   def index
-    @categories = Shop.find(params[:id]).categories
-    authorize @categories
+    super do
+      @categories = Shop.find(params[:id]).categories
+    end
   end
 end

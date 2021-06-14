@@ -1,10 +1,11 @@
-class CartController < ApplicationController
+class CartController < ResourcesController
   before_action :save_previous_url, only: :show
 
   def show
-    @cart_items = CartItem.where(cart_id: @cart.id).sort
-    authorize @cart_items.first
-    @back_url = session[:my_previous_url]
+    super do
+      @cart_items = CartItem.where(cart_id: @cart.id).sort
+      @back_url = session[:my_previous_url]
+    end
   end
 
   private
