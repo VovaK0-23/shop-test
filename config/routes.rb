@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get    'shops',             to: 'shop#index',         as: :shops
   get    'categories/:id',    to: 'category#index',     as: :categories
   get    'products/:id',      to: 'product#index',      as: :products
+  get    'product/:id',       to: 'product#show',       as: :product
   post   'cart_item/:id',     to: 'cart_item#create',   as: :create_cart_item
   delete 'cart_item/:id',     to: 'cart_item#destroy',  as: :delete_cart_item
   get    'cart',              to: 'cart#show',          as: :cart
