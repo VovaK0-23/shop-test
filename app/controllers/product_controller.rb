@@ -3,7 +3,10 @@ class ProductController < ApplicationController
 
   def index
     authorize Category.find(params[:id]).products
-    @products = Category.find(params[:id]).products
+
+    @search = Category.find(params[:id]).products.ransack(params[:q])
+    @products = @search.result(distinct: true)
+
     @shop_id = Category.find(params[:id]).shop_id
   end
 
