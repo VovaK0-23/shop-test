@@ -1,8 +1,5 @@
 <div class="container">
-  <%= link_to cart_path, :class => "btn btn-primary mt-3" do %>
-    Cart
-    <span class="badge bg-secondary"><%= @amount_sum %></span>
-  <% end %>
+  <%= render 'partials/cart_badger' %>
   <table class="table">
     <tbody>
     <tr>

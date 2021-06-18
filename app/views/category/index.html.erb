@@ -1,4 +1,11 @@
 <div class="container">
+  <%= render 'partials/cart_badger' %>
+  <%= render 'partials/search_product' %>
+
+  <% if params[:q].present? %>
+    <%= render 'partials/products_table' %>
+  <% end %>
+
   <table class="table">
     <thead>
     <tr>

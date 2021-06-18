@@ -1,7 +1,13 @@
 class CategoryController < ResourcesController
+  before_action :amount_sum, only: :index
+
   def index
     super do
-      @categories = Shop.find(params[:id]).categories
+      shop = Shop.find(params[:id])
+      @search = shop.products.ransack(params[:q])
+      @products = @search.result(distinct: true)
+
+      @categories = shop.categories
     end
   end
 end
