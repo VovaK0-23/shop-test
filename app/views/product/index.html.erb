@@ -20,7 +20,9 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product</th>
+      <th scope="col">Main image</th>
       <th scope="col">Price</th>
+      <th scope="col">Show product</th>
       <th scope="col">Add to cart</th>
     </tr>
     </thead>
@@ -29,7 +31,13 @@
       <tr>
         <th scope="row"><%= i + 1 %></th>
         <td><%= product.name %></td>
+        <% if product.main_image.present? %>
+          <td><%= image_tag url_for(product.main_image), size: '50x50' %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= product.price %></td>
+        <td><%= link_to "Show product", product_path(product.id), class: "btn btn-outline-primary"%></td>
         <td><%= button_to "Add to cart", create_cart_item_path(product.id), remote: true, class: "btn btn-primary"%></td>
       </tr>
     <% end %>
