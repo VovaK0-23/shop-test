@@ -1,54 +1,36 @@
-<a type="button" class="btn btn-primary mt-3" id="btn-cart">
-  Cart
-</a>
+<%= render 'partials/cart_badger' %>
 <div class="cart-modal card hide">
   <div class="card-header">
-    Featured
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <%= link_to 'Open', cart_path, class: "btn btn-primary" %>
+      <%= render 'partials/cart_badger' %>
+      </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Cras justo odio</li>
+  <div class="card-body">
+  <%sum = [] %>
+  <ul class="list-group list-group-flush mb-4">
+    <% @cart.cart_items.sort.each do |cart_item| %>
+      <%product = cart_item.product %>
+      <%total_price = product.price * cart_item.amount %>
+      <%sum << total_price%>
+      <li class="list-group-item">Name: <%=product.name%>
+        <ul class="list-group list-group-flush" style="list-style: none;">
+          <li class="list-group-item">Price: <%= product.price %></li>
+          <% if product.main_image.present? %>
+            <li class="list-group-item"><%= image_tag url_for(product.main_image), size: '50x50' %></li>
+          <% end %>
+          <li class="list-group-item">Amount: <%= cart_item.amount %></li>
+          <li class="list-group-item">Total price: <%= total_price %></li>
+          <li class="list-group-item"><%= button_to "Add to cart", create_cart_item_path(product.id), remote: true, class: "btn btn-primary"%></li>
+          <li class="list-group-item"><%= button_to "Delete", delete_cart_item_path(cart_item.id), method: :delete, remote: true, class: "btn btn-outline-danger"%></li>
+        </ul>
+      </li>
+    <% end %>
   </ul>
+  </div>
+  <div class="card-footer cart-modal-footer">
+    Total: <%= sum.sum %>
+    <%= link_to "Go to payment", new_order_path, class: "btn btn-primary"%>
+  </div>
 </div>
 <%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>

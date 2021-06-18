@@ -26,8 +26,10 @@ $(document).ready(function(){
     let cart = $(".cart-modal");
     $("#btn-cart").click(function(event) {
         event.preventDefault();
+        if (cart.hasClass("animation") || cart.hasClass("reverse-animation"))
+            return;
         if (cart.hasClass("hide")){
-            cart.css("right", "-19rem").addClass("animation").removeClass("hide").css("right", "0");
+            cart.addClass("animation").removeClass("hide");
             setTimeout(function(){
                 cart.removeClass("animation")
             }, 1500);
@@ -35,7 +37,7 @@ $(document).ready(function(){
             cart.addClass("reverse-animation");
             setTimeout(function () {
                 cart.addClass("hide").removeClass("reverse-animation")
-            }, 1500);
+            }, 1000);
         }
     });
 
@@ -46,6 +48,11 @@ $(document).ready(function(){
             return;
         if($(event.target).closest('.cart-modal').length)
             return;
-        $(".cart-modal").addClass("hide");
+        if (cart.hasClass("animation") || cart.hasClass("reverse-animation"))
+            return;
+        cart.addClass("reverse-animation");
+        setTimeout(function () {
+            cart.addClass("hide").removeClass("reverse-animation")
+        }, 1000);
     });
 });
