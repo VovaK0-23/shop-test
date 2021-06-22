@@ -10,7 +10,7 @@ class CartItemController < ApplicationController
 
   def destroy
     @cart_item = CartItem.destroy(params[:id])
-    redirect_to cart_path
+    redirect_to request.referer
   end
 
   private

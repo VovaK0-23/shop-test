@@ -4,3 +4,39 @@
 .alert:empty{
   display: none;
 }
+
+.animation{
+  animation-name: example;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+}
+.reverse-animation{
+  animation-name: example;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+.cart-modal{
+  width: 19rem;
+  height: 100%;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  z-index: 1;
+}
+.hide{
+  display: none !important;
+}
+
+@keyframes example {
+  from {right: -19rem;}
+  to {right: 0;}
+}
+
+.cart-modal-footer{
+  background-color: rgba(230,230,230,0.8) !important;
+  position: sticky;
+  right: 0;
+  bottom: 0;
+}
