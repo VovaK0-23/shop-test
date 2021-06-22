@@ -1,0 +1,11 @@
+Payment successful
+===================================================
+<%= @order.name %>, your order id - <%= @order.id %>
+To login to the site, just follow this link: <%= @url %>.
+Thanks for order and have a great day!
+
+Order details
+Product | Price | Amount
+<% @order.cart_items.each do |cart_item| %>
+  <%= cart_item.product.name %> | <%= cart_item.product.price %> | <%= cart_item.amount %>
+<% end %>

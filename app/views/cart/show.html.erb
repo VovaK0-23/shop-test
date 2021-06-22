@@ -1,0 +1,35 @@
+<div class="container">
+  <table class="table mt-5 mb-3">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Add to cart</th>
+      <th scope="col">Delete from cart</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @cart_items.each_with_index do |cart_item, i| %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= cart_item.product.name %></td>
+        <td><%= cart_item.product.price %></td>
+        <td class="amount"><%= cart_item.amount %></td>
+        <td><%= button_to "Add to cart", create_cart_item_path(cart_item.product.id), data: {id: cart_item.product.id}, class: "btn btn-primary add-to-cart"%></td>
+        <td><%= button_to "Delete from cart", delete_cart_item_path(cart_item.id), method: :delete, remote: true, class: "btn btn-danger"%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-between">
+    <div class="col-3">
+      <%= link_to "Back", @back_url, class: "btn btn-secondary"%>
+    </div>
+    <div class="col-3">
+      <%= link_to "Go to payment", new_order_path, class: "btn btn-primary"%>
+    </div>
+  </div>
+</div>
+<%= javascript_pack_tag 'custom', 'data-turbolinks-track': 'reload' %>

@@ -1,0 +1,28 @@
+<div class="container">
+  <%= render 'partials/cart_modal' %>
+  <%= render 'partials/search_product' %>
+
+  <% if params[:q].present? %>
+    <%= render 'partials/products_table' %>
+  <% end %>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Categories</th>
+      <th scope="col">Products</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @categories.each_with_index do |category, i| %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= category.name %></td>
+        <td><%= link_to "Products", products_path(category.id), class: "btn btn-secondary"%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to "Back", shops_path, class: "btn btn-secondary" %>
+</div>

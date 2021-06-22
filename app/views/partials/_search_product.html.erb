@@ -1,0 +1,12 @@
+<p class="mt-3 mb-0">Product Search Form:
+</p>
+<%= search_form_for(@search, url: request.path, method: :get, class: "row g-2") do |f| %>
+  <div class="col-auto form-group form-floating">
+    <%= f.search_field :name_cont, id: "searchFormInput", class: "form-control", placeholder: "apple" %>
+    <%= f.label :name_cont, for: "searchFormInput"%>
+  </div>
+  <div class="btn-group col-auto">
+    <%= f.submit class: "btn btn-primary"%>
+  </div>
+<% end %>
+<%= link_to "Reset Search", request.path, class: "btn btn-outline-danger mb-2 mt-2"%>

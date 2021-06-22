@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <!--devise-->
+    <%= render 'auth/auth_header' %>
+    <!--devise-->
+    <p class="alert alert-info"><%= notice %></p>
+    <p class="alert alert-danger"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
