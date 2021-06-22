@@ -1,47 +1,6 @@
 <div class="container">
-  <%= link_to cart_path, :class => "btn btn-primary mt-3" do %>
-    Cart
-    <span class="badge bg-secondary"><%= @amount_sum %></span>
-  <% end %>
-  <p class="mt-3 mb-0">Search Form: </p>
-  <%= search_form_for @search, class: "row g-2" do |f| %>
-    <div class="col-auto form-group form-floating">
-      <%= f.search_field :name_cont, id: "searchFormInput", class: "form-control", placeholder: "apple" %>
-      <%= f.label :name_cont, for: "searchFormInput"%>
-    </div>
-    <div class="btn-group col-auto">
-      <%= f.submit class: "btn btn-primary"%>
-    </div>
-  <% end %>
-  <%= link_to "Reset Search", products_path, class: "btn btn-outline-danger mb-2 mt-2"%>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Main image</th>
-      <th scope="col">Price</th>
-      <th scope="col">Show product</th>
-      <th scope="col">Add to cart</th>
-    </tr>
-    </thead>
-    <tbody>
-      <% @products.each_with_index do |product, i| %>
-      <tr>
-        <th scope="row"><%= i + 1 %></th>
-        <td><%= product.name %></td>
-        <% if product.main_image.present? %>
-          <td><%= image_tag url_for(product.main_image), size: '50x50' %></td>
-        <% else %>
-          <td></td>
-        <% end %>
-        <td><%= product.price %></td>
-        <td><%= link_to "Show product", product_path(product.id), class: "btn btn-outline-primary"%></td>
-        <td><%= button_to "Add to cart", create_cart_item_path(product.id), remote: true, class: "btn btn-primary"%></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <%= render 'partials/cart_badger' %>
+  <%= render 'partials/search_product' %>
+  <%= render 'partials/products_table' %>
   <%= link_to "Back", categories_path(@shop_id), class: "btn btn-secondary"%>
 </div>

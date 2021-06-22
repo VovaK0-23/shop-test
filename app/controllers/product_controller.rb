@@ -22,8 +22,4 @@ class ProductController < ResourcesController
     session[:product_url] = URI(request.referer).path
     @back_url = session[:product_url]
   end
-
-  def amount_sum
-    @amount_sum = CartItem.where(cart_id: @cart.id).sum(&:amount)
-  end
 end

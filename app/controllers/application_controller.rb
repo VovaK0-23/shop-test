@@ -65,4 +65,8 @@ class ApplicationController < ActionController::Base
   def find_cart_by_user_id
     Cart.find_by(user_id: current_user.id)
   end
+
+  def amount_sum
+    @amount_sum = CartItem.where(cart_id: @cart.id).sum(&:amount)
+  end
 end
