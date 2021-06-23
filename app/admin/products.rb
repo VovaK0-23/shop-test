@@ -24,16 +24,20 @@ ActiveAdmin.register Product do
   show do
     attributes_table :name, :price, :created_at, :updated_at
     attributes_table do
-      row :main_image do
-        div do
-          image_tag url_for(product.main_image), size: '200x200'
+      if product.main_image.present?
+        row :main_image do
+          div do
+            image_tag url_for(product.main_image), size: '200x200'
+          end
         end
       end
-      row :images do
-        div do
-          product.images.each do |img|
-            div do
-              image_tag url_for(img), size: '200x200'
+      if product.images.present?
+        row :images do
+          div do
+            product.images.each do |img|
+              div do
+                image_tag url_for(img), size: '200x200'
+              end
             end
           end
         end
