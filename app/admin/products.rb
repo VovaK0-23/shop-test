@@ -1,6 +1,4 @@
 ActiveAdmin.register Product do
-  after_create :upload_image
-  after_update :upload_image
   permit_params :name, :price, :main_image, images: []
 
   filter :categories
@@ -8,21 +6,6 @@ ActiveAdmin.register Product do
   filter :price
   filter :created_at
   filter :updated_at
-
-  controller do
-    def upload_image(product)
-      if product.main_image.present?
-        image = product.main_image
-        Cloudinary::Uploader.upload(ActiveStorage::Blob.service.send(:path_for, image.key), resource_type: :auto)
-      end
-      return if product.images.blank?
-
-      images = product.images
-      images.each do |image|
-        Cloudinary::Uploader.upload(ActiveStorage::Blob.service.send(:path_for, image.key), resource_type: :auto)
-      end
-    end
-  end
 
   form do |f|
     f.inputs do
