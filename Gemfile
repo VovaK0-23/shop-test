@@ -6,6 +6,7 @@ ruby '3.0.0'
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap', '~> 5.0.0.beta2'
+gem 'cloudinary'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'grape'
